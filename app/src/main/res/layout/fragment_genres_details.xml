@@ -18,6 +18,7 @@
             android:id="@+id/tvGenreDetails"
             style="@style/WrapContentStyle"
             android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             tools:text="Disco is a genre of dance-oriented music that originated in African American, gay and Hispanic American communities in 1970s. In what is considered a forerunner to disco style clubs in February 1970 New York City DJ David Mancuso opened The Loft, a members-only private dance club set in his own home. Most agree that the first disco songs were released in 1973, though some claim that Soul Makossa by Manu Dibango's from 1972 to be the first disco record. The first article about disco was written in September 1973 by Vince Aletti for Rolling Stone Magazine. In 1974 New York City's WPIX-FM premiered the first disc" />
     </ScrollView>
@@ -31,8 +32,9 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         style="@style/SectionStyle"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@color/gray"
         android:layout_marginTop="@dimen/_5sdp"
-        android:background="@color/teal_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />

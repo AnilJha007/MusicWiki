@@ -1,9 +1,7 @@
 package com.mobile.musicwiki.service.api
 
 import com.mobile.musicwiki.BuildConfig
-import com.mobile.musicwiki.service.model.AlbumsResponse
-import com.mobile.musicwiki.service.model.GenresDetailsResponse
-import com.mobile.musicwiki.service.model.GenresResponse
+import com.mobile.musicwiki.service.model.*
 import com.mobile.musicwiki.service.utility.ApiConstants
 import retrofit2.Response
 import retrofit2.http.GET
@@ -33,4 +31,20 @@ interface ApiService {
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("format") format: String = "json"
     ): Response<AlbumsResponse>
+
+    @GET("2.0/")
+    suspend fun getArtists(
+        @Query("method") method: String = ApiConstants.ARTISTS_METHOD,
+        @Query("tag") tag: String,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Query("format") format: String = "json"
+    ): Response<ArtistsResponse>
+
+    @GET("2.0/")
+    suspend fun getTracks(
+        @Query("method") method: String = ApiConstants.TRACKS_METHOD,
+        @Query("tag") tag: String,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Query("format") format: String = "json"
+    ): Response<TracksResponse>
 }

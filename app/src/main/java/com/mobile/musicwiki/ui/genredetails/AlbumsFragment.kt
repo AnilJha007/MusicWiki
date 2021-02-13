@@ -26,7 +26,6 @@ class AlbumsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initListener()
         initAdapter()
         initViewModel()
     }
@@ -61,6 +60,4 @@ class AlbumsFragment : BaseFragment() {
         }
         itemAdapter.updateData(data)
     }
-
-    private fun initListener() {}
 }

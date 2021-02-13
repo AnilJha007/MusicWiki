@@ -14,6 +14,4 @@ data class Album(
     val image: ArrayList<Image>?
 )
 
-data class Artist(val name: String, val mbid: String, val url: String)
-
 data class Image(@SerializedName("#text") val text: String, val size: String)

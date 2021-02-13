@@ -1,8 +1,6 @@
 package com.mobile.musicwiki.service.api
 
-import com.mobile.musicwiki.service.model.AlbumsResponse
-import com.mobile.musicwiki.service.model.GenresDetailsResponse
-import com.mobile.musicwiki.service.model.GenresResponse
+import com.mobile.musicwiki.service.model.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -15,4 +13,10 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : Ap
 
     override suspend fun getAlbums(genreName: String): Response<AlbumsResponse> =
         apiService.getAlbums(tag = genreName)
+
+    override suspend fun getArtists(genreName: String): Response<ArtistsResponse> =
+        apiService.getArtists(tag = genreName)
+
+    override suspend fun getTracks(genreName: String): Response<TracksResponse> =
+        apiService.getTracks(tag = genreName)
 }

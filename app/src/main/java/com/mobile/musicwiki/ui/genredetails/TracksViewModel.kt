@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobile.musicwiki.R
-import com.mobile.musicwiki.service.model.AlbumsResponse
+import com.mobile.musicwiki.service.model.TracksResponse
 import com.mobile.musicwiki.service.repository.MusicWikiRepository
 import com.mobile.musicwiki.service.utility.NetworkHelper
 import com.mobile.musicwiki.service.utility.Resource
@@ -15,24 +15,24 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class AlbumsViewModel @ViewModelInject constructor(
+class TracksViewModel @ViewModelInject constructor(
     @ApplicationContext private val context: Context,
     private val repository: MusicWikiRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
-    // live data for albums
-    private val _albumsMutableLiveData = MutableLiveData<Resource<AlbumsResponse>>()
-    val albumsLiveData: LiveData<Resource<AlbumsResponse>>
-        get() = _albumsMutableLiveData
+    // live data for tracks
+    private val _tracksMutableLiveData = MutableLiveData<Resource<TracksResponse>>()
+    val tracksLiveData: LiveData<Resource<TracksResponse>>
+        get() = _tracksMutableLiveData
 
-    fun getAlbums(genreName: String) {
+    fun getTracks(genreName: String) {
         viewModelScope.launch {
-            with(_albumsMutableLiveData) {
+            with(_tracksMutableLiveData) {
                 postValue(Resource.loading(null))
                 if (networkHelper.isNetworkConnected()) {
                     try {
-                        setData(repository.getAlbums(genreName))
+                        setData(repository.getTracks(genreName))
                     } catch (e: Exception) {
                         postValue(
                             Resource.error(context.getString(R.string.something_went_wrong), null)
@@ -47,18 +47,18 @@ class AlbumsViewModel @ViewModelInject constructor(
         }
     }
 
-    private fun setData(response: Response<AlbumsResponse>) {
+    private fun setData(response: Response<TracksResponse>) {
         if (response.isSuccessful) {
             // add data to live data
             viewModelScope.launch {
                 response.body().let {
                     it?.let {
-                        _albumsMutableLiveData.postValue(Resource.success(it))
+                        _tracksMutableLiveData.postValue(Resource.success(it))
                     }
                 }
             }
         } else {
-            _albumsMutableLiveData.postValue(
+            _tracksMutableLiveData.postValue(
                 Resource.error(
                     response.errorBody().toString(),
                     null

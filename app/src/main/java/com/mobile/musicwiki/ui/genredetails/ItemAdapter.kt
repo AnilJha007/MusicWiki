@@ -9,7 +9,7 @@ import com.mobile.musicwiki.utils.setImage
 import com.mobile.musicwiki.utils.setTextOrHide
 import kotlinx.android.synthetic.main.item_list.view.*
 
-data class Item(val title: String, val subTitle: String, val url: String? = null)
+data class Item(val title: String? = null, val subTitle: String? = null, val url: String? = null)
 
 class ItemAdapter(
     private val itemClickListener: (Item) -> Unit
