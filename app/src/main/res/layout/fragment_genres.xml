@@ -2,9 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/genresParent"
+    style="@style/MatchParentStyle"
     tools:context=".ui.genres.GenresFragment">
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/tagGroup"
+        style="@style/WrapContentStyle"
+        android:visibility="gone"
+        app:constraint_referenced_ids="btnChooseGenre, tvWelcome, scrollViewTag" />
 
     <TextView
         android:id="@+id/tvWelcome"
@@ -32,22 +38,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
-    <com.mobile.musicwiki.utils.customviews.TagView
-        android:id="@+id/tagView"
-        style="@style/SectionStyle"
-        android:padding="@dimen/_20sdp"
-        android:gravity="center"
-        app:background_color="@color/white"
-        app:corner_radius="@dimen/_5sdp"
-        app:horizontal_spacing="@dimen/_4sdp"
+    <ScrollView
+        android:id="@+id/scrollViewTag"
+        style="@style/ZeroDpStyle"
+        android:padding="@dimen/_10sdp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChooseGenre"
-        app:sort_type="none"
-        app:stroke_color="@color/gray"
-        app:stroke_width="@dimen/_1sdp"
-        app:text_color="@color/black"
-        app:text_font_size="@dimen/_6sdp"
-        app:vertical_spacing="@dimen/_4sdp" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChooseGenre">
+
+        <com.mobile.musicwiki.customviews.TagView
+            android:id="@+id/tagView"
+            style="@style/WrapContentStyle"
+            android:gravity="center"
+            app:background_color="@color/white"
+            app:corner_radius="@dimen/_5sdp"
+            app:horizontal_spacing="@dimen/_4sdp"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:sort_type="none"
+            app:stroke_color="@color/gray"
+            app:stroke_width="@dimen/_1sdp"
+            app:text_color="@color/black"
+            app:text_font_size="@dimen/_5sdp"
+            app:vertical_spacing="@dimen/_4sdp" />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

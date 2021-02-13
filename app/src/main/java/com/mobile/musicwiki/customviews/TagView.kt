@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.utils.customviews
+package com.mobile.musicwiki.customviews
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
@@ -107,11 +107,12 @@ class TagView<T> @JvmOverloads constructor(
         var yPos = paddingTop
 
         val childHeightMeasureSpec: Int
-        childHeightMeasureSpec = if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.AT_MOST) {
-            MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST)
-        } else {
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
-        }
+        childHeightMeasureSpec =
+            if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.AT_MOST) {
+                MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST)
+            } else {
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+            }
 
         tags.forEach { child ->
             if (child.visibility != View.GONE) {

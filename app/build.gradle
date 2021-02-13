@@ -25,13 +25,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", '"http://ws.audioscrobbler.com/2.0/"'
+            buildConfigField "String", "BASE_URL", '"http://ws.audioscrobbler.com/"'
             buildConfigField "String", "API_KEY", '"349ff577e74ec68269055be567a24d1a"'
             buildConfigField "String", "SHARED_SECRET_KEY", '"5170595d37fef9782e1a7947139deec6"'
         }
         debug{
             debuggable = true
-            buildConfigField "String", "BASE_URL", '"http://ws.audioscrobbler.com/2.0/"'
+            buildConfigField "String", "BASE_URL", '"http://ws.audioscrobbler.com/"'
             buildConfigField "String", "API_KEY", '"349ff577e74ec68269055be567a24d1a"'
             buildConfigField "String", "SHARED_SECRET_KEY", '"5170595d37fef9782e1a7947139deec6"'
         }
@@ -68,6 +68,18 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_ktx_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_version"
 
+    // retrofit networking library
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // coroutine library
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+
+    // spot dialog progress library
+    implementation "com.github.d-max:spots-dialog:$spot_dialog_version"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
