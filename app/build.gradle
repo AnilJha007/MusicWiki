@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+
+    id 'kotlin-kapt'
 }
 
 android {
@@ -21,6 +24,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", '"http://ws.audioscrobbler.com/2.0/"'
+            buildConfigField "String", "API_KEY", '"349ff577e74ec68269055be567a24d1a"'
+            buildConfigField "String", "SHARED_SECRET_KEY", '"5170595d37fef9782e1a7947139deec6"'
+        }
+        debug{
+            debuggable = true
+            buildConfigField "String", "BASE_URL", '"http://ws.audioscrobbler.com/2.0/"'
+            buildConfigField "String", "API_KEY", '"349ff577e74ec68269055be567a24d1a"'
+            buildConfigField "String", "SHARED_SECRET_KEY", '"5170595d37fef9782e1a7947139deec6"'
         }
     }
     compileOptions {
@@ -39,7 +51,14 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
 
+    // navigation library
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    // sdp sizing library
+    implementation "com.intuit.sdp:sdp-android:$sdp_version"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
