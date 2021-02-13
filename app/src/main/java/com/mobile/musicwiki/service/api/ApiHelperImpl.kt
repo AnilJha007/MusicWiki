@@ -25,4 +25,7 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : Ap
         artistName: String
     ): Response<AlbumDetailsResponse> =
         apiService.getAlbumDetails(artist = artistName, album = albumName)
+
+    override suspend fun getArtistDetails(artistName: String): Response<ArtistsDetailsResponse> =
+        apiService.getArtistDetails(artist = artistName)
 }

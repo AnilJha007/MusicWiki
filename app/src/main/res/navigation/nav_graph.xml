@@ -45,4 +45,15 @@
             app:argType="string"
             app:nullable="false" />
     </fragment>
+
+    <fragment
+        android:id="@+id/artistDetailsDest"
+        android:name="com.mobile.musicwiki.ui.artistdetails.ArtistDetailsFragment"
+        tools:layout="@layout/fragment_artist_details">
+
+        <argument
+            android:name="artist"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 </navigation>

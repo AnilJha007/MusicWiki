@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.utils.setImage
 import com.mobile.musicwiki.utils.setTextOrHide
+import kotlinx.android.synthetic.main.fragment_album_details.*
 import kotlinx.android.synthetic.main.item_list.view.*
 
 data class Item(val title: String? = null, val subTitle: String? = null, val url: String? = null)
@@ -36,6 +37,7 @@ class ItemAdapter(
                     tvTitle.setTextOrHide(title)
                     tvSubtitle.setTextOrHide(subTitle)
                     ivItem.setImage(url)
+                    ivItem.imageAlpha = 90
                 }
                 setOnClickListener {
                     itemClickListener(item)

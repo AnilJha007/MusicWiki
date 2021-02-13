@@ -56,4 +56,12 @@ interface ApiService {
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("format") format: String = "json"
     ): Response<AlbumDetailsResponse>
+
+    @GET("2.0/")
+    suspend fun getArtistDetails(
+        @Query("method") method: String = ApiConstants.ARTIST_DETAILS_METHOD,
+        @Query("artist") artist: String,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Query("format") format: String = "json"
+    ): Response<ArtistsDetailsResponse>
 }

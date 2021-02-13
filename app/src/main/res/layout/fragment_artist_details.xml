@@ -2,9 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/albumDetailsParent"
+    android:id="@+id/artistDetailsParent"
     style="@style/MatchParentStyle"
     tools:context=".ui.genredetails.GenresDetailsFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        style="@style/WrapContentStyle"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
 
     <ImageView
         android:id="@+id/ivItem"
@@ -17,12 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        style="@style/WrapContentStyle"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
-
     <TextView
         android:id="@+id/tvTitle"
         style="@style/SectionStyle"
@@ -34,26 +34,68 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvSubtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Title Text" />
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        style="@style/SectionStyle"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:paddingStart="@dimen/_15sdp"
-        android:paddingEnd="@dimen/_15sdp"
-        android:singleLine="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="SubTitle Text" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title Text" />
+
+    <TextView
+        android:id="@+id/tvPlaycountValue"
+        style="@style/WrapContentStyle"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvPlaycount"
+        app:layout_constraintEnd_toEndOf="@id/tvPlaycount"
+        app:layout_constraintStart_toStartOf="@id/tvPlaycount"
+        tools:text="530K" />
+
+    <TextView
+        android:id="@+id/tvPlaycount"
+        style="@style/WrapContentStyle"
+        android:layout_margin="@dimen/_5sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:singleLine="true"
+        android:text="@string/playcount"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvFollowersValue"
+        style="@style/WrapContentStyle"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvFollowers"
+        app:layout_constraintEnd_toEndOf="@id/tvFollowers"
+        app:layout_constraintStart_toStartOf="@id/tvFollowers"
+        tools:text="530K" />
+
+    <TextView
+        android:id="@+id/tvFollowers"
+        style="@style/WrapContentStyle"
+        android:layout_margin="@dimen/_5sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:text="@string/followers"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollDetails"
@@ -65,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline">
 
         <TextView
-            android:id="@+id/tvAlbumDetails"
+            android:id="@+id/tvArtistDetails"
             style="@style/WrapContentStyle"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"
@@ -74,8 +116,8 @@
     </ScrollView>
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/viewGroup"
         style="@style/WrapContentStyle"
+        android:id="@+id/viewGroup"
         android:visibility="gone"
-        app:constraint_referenced_ids="scrollDetails, tvSubtitle, tvTitle, ivItem" />
+        app:constraint_referenced_ids="scrollDetails, tvFollowers, tvFollowersValue, tvPlaycount, tvPlaycountValue, tvTitle, ivItem" />
 </androidx.constraintlayout.widget.ConstraintLayout>

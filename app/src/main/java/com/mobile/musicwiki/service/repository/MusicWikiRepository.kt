@@ -17,4 +17,7 @@ class MusicWikiRepository @Inject constructor(private val apiHelper: ApiHelper) 
 
     suspend fun getAlbumDetails(albumName: String, artistName: String) =
         apiHelper.getAlbumDetails(albumName, artistName)
+
+    suspend fun getArtistDetails(artistName: String) =
+        apiHelper.getArtistDetails(artistName)
 }

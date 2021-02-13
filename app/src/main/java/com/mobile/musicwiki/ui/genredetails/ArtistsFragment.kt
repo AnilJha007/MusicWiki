@@ -3,6 +3,7 @@ package com.mobile.musicwiki.ui.genredetails
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.base.BaseFragment
 import com.mobile.musicwiki.service.model.ArtistsResponse
@@ -31,7 +32,11 @@ class ArtistsFragment : BaseFragment() {
     }
 
     private fun initAdapter() {
-        itemAdapter = ItemAdapter {}
+        itemAdapter = ItemAdapter {
+            findNavController().navigate(R.id.artistDetailsDest, Bundle().apply {
+                putString(ARTISTS, it.title)
+            })
+        }
         rvArtists.adapter = itemAdapter
     }
 

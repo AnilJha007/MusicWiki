@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.ui.albumdetails
+package com.mobile.musicwiki.ui.artistdetails
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -6,39 +6,32 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.base.BaseFragment
-import com.mobile.musicwiki.service.model.AlbumDetailsResponse
+import com.mobile.musicwiki.service.model.ArtistsDetailsResponse
 import com.mobile.musicwiki.service.utility.ApiStatus
-import com.mobile.musicwiki.ui.genredetails.AlbumsFragment.Companion.ALBUMS
 import com.mobile.musicwiki.ui.genredetails.ArtistsFragment.Companion.ARTISTS
 import com.mobile.musicwiki.utils.setImage
 import com.mobile.musicwiki.utils.setTextOrHide
 import com.mobile.musicwiki.utils.show
 import com.mobile.musicwiki.utils.snackBar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_album_details.*
-import kotlinx.android.synthetic.main.fragment_album_details.ivItem
-import kotlinx.android.synthetic.main.fragment_album_details.tvTitle
-import kotlinx.android.synthetic.main.fragment_album_details.viewGroup
 import kotlinx.android.synthetic.main.fragment_artist_details.*
 
 @AndroidEntryPoint
-class AlbumDetailsFragment : BaseFragment() {
+class ArtistDetailsFragment : BaseFragment() {
 
-    lateinit var albumName: String
     lateinit var artistName: String
     private lateinit var spotsDialog: AlertDialog
 
     override fun setPageTitle() {
-        activity?.title = albumName
+        activity?.title = artistName
     }
 
-    private val albumDetailsViewModel: AlbumDetailsViewModel by viewModels()
+    private val artistDetailsViewModel: ArtistDetailsViewModel by viewModels()
 
-    override fun getLayoutResourceId() = R.layout.fragment_album_details
+    override fun getLayoutResourceId() = R.layout.fragment_artist_details
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        albumName = requireArguments().getString(ALBUMS)!!
         artistName = requireArguments().getString(ARTISTS)!!
     }
 
@@ -53,7 +46,7 @@ class AlbumDetailsFragment : BaseFragment() {
     }
 
     private fun initViewModel() {
-        albumDetailsViewModel.albumsLiveData.observe(viewLifecycleOwner) { res ->
+        artistDetailsViewModel.artistLiveData.observe(viewLifecycleOwner) { res ->
             when (res.status) {
                 ApiStatus.LOADING -> {
                     if (::spotsDialog.isInitialized) {
@@ -70,21 +63,34 @@ class AlbumDetailsFragment : BaseFragment() {
                 ApiStatus.ERROR -> {
                     if (::spotsDialog.isInitialized && spotsDialog.isShowing)
                         spotsDialog.hide()
-                    albumDetailsParent.snackBar(res.message!!)
+                    artistDetailsParent.snackBar(res.message!!)
                 }
             }
         }
-        albumDetailsViewModel.getAlbumDetails(albumName, artistName)
+        artistDetailsViewModel.getArtistDetails(artistName)
     }
 
-    private fun setData(it: AlbumDetailsResponse) {
+    private fun setData(it: ArtistsDetailsResponse) {
         viewGroup.show()
-        with(it.album) {
+        with(it.artist) {
             ivItem.setImage(image?.lastOrNull()?.text)
             ivItem.imageAlpha = 90
             tvTitle.setTextOrHide(name)
-            tvSubtitle.setTextOrHide(artist)
-            tvAlbumDetails.setTextOrHide(wiki?.summary, true)
+            tvPlaycountValue.setTextOrHide(coolFormat(stats.playcount.toDouble()))
+            tvFollowersValue.setTextOrHide(coolFormat(stats.listeners.toDouble()))
+            tvArtistDetails.setTextOrHide(bio.summary, true)
         }
+    }
+
+    private fun coolFormat(n: Double, iteration: Int = 0): String {
+        val c = charArrayOf('K', 'M', 'B', 'T')
+
+        val d = n.toLong() / 100 / 10.0
+        val isRound =
+            d * 10 % 10 == 0.0 //true if the decimal part is equal to 0 (then it's trimmed anyway)
+        return (if (d < 1000) //this determines the class, i.e. 'k', 'm' etc
+            (if (d > 99.9 || isRound || !isRound && d > 9.99) //this decides whether to trim the decimals
+                d.toInt() * 10 / 10 else d.toString() + "" // (int) d * 10 / 10 drops the decimal
+                    ).toString() + "" + c.get(iteration) else coolFormat(d, iteration + 1))
     }
 }
