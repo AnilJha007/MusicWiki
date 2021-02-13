@@ -2,7 +2,9 @@ package com.mobile.musicwiki.ui.genres
 
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GenresFragment : BaseFragment() {
 
     override fun setPageTitle() {
