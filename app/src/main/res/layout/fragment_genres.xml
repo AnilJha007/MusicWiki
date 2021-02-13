@@ -17,15 +17,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        style="@style/WrapContentStyle"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChooseGenre"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
         android:text="@string/choose_a_genre_to_start_with"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="@dimen/_12sdp"
-        app:drawableEndCompat="@drawable/ic_arrow_down_24"
+        android:textSize="@dimen/_10sdp"
+        app:drawableEndCompat="@drawable/button_item_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
+    <com.mobile.musicwiki.utils.customviews.TagView
+        android:id="@+id/tagView"
+        style="@style/SectionStyle"
+        android:padding="@dimen/_20sdp"
+        android:gravity="center"
+        app:background_color="@color/white"
+        app:corner_radius="@dimen/_5sdp"
+        app:horizontal_spacing="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChooseGenre"
+        app:sort_type="none"
+        app:stroke_color="@color/gray"
+        app:stroke_width="@dimen/_1sdp"
+        app:text_color="@color/black"
+        app:text_font_size="@dimen/_6sdp"
+        app:vertical_spacing="@dimen/_4sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
