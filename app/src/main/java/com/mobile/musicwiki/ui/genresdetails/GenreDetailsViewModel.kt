@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.ui.genres
+package com.mobile.musicwiki.ui.genresdetails
 
 import android.content.Context
 import androidx.hilt.lifecycle.ViewModelInject
@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobile.musicwiki.R
-import com.mobile.musicwiki.service.model.Genres
-import com.mobile.musicwiki.service.model.GenresResponse
+import com.mobile.musicwiki.service.model.GenreDetails
+import com.mobile.musicwiki.service.model.GenresDetailsResponse
 import com.mobile.musicwiki.service.repository.MusicWikiRepository
 import com.mobile.musicwiki.service.utility.NetworkHelper
 import com.mobile.musicwiki.service.utility.Resource
@@ -16,7 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class GenresViewModel @ViewModelInject constructor(
+class GenreDetailsViewModel @ViewModelInject constructor(
     @ApplicationContext private val context: Context,
     private val repository: MusicWikiRepository,
     private val networkHelper: NetworkHelper
@@ -24,18 +24,18 @@ class GenresViewModel @ViewModelInject constructor(
 
     var isApiLoadedOnce = false
 
-    // live data for genres list
-    private val _genresMutableLiveData = MutableLiveData<Resource<Genres>>()
-    val genresLiveData: LiveData<Resource<Genres>>
-        get() = _genresMutableLiveData
+    // live data for genre details
+    private val _genreDetailsMutableLiveData = MutableLiveData<Resource<GenreDetails>>()
+    val genreDetailsLiveData: LiveData<Resource<GenreDetails>>
+        get() = _genreDetailsMutableLiveData
 
-    fun getGenres() {
+    fun getGenreDetails(genreName: String) {
         viewModelScope.launch {
-            with(_genresMutableLiveData) {
+            with(_genreDetailsMutableLiveData) {
                 postValue(Resource.loading(null))
                 if (networkHelper.isNetworkConnected()) {
                     try {
-                        setGenresData(repository.getGenres())
+                        setGenreDetailsData(repository.getGenreDetails(genreName))
                     } catch (e: Exception) {
                         postValue(
                             Resource.error(context.getString(R.string.something_went_wrong), null)
@@ -50,18 +50,23 @@ class GenresViewModel @ViewModelInject constructor(
         }
     }
 
-    private fun setGenresData(response: Response<GenresResponse>) {
+    private fun setGenreDetailsData(response: Response<GenresDetailsResponse>) {
         if (response.isSuccessful) {
             // add data to live data
             viewModelScope.launch {
                 response.body().let {
                     it?.let {
-                        _genresMutableLiveData.postValue(Resource.success(it.toptags))
+                        _genreDetailsMutableLiveData.postValue(Resource.success(it.tag))
                     }
                 }
             }
         } else {
-            _genresMutableLiveData.postValue(Resource.error(response.errorBody().toString(), null))
+            _genreDetailsMutableLiveData.postValue(
+                Resource.error(
+                    response.errorBody().toString(),
+                    null
+                )
+            )
         }
     }
 }

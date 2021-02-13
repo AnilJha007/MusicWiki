@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.customviews
+package com.mobile.musicwiki.widgets
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.github.tommykw.tagview.Annotations
+import com.mobile.musicwiki.utils.Annotations
 import com.mobile.musicwiki.R
+import com.mobile.musicwiki.utils.DataTransform
 import com.mobile.musicwiki.utils.TagLayoutParams
 import com.mobile.musicwiki.utils.setTextAppearanceV2
 import kotlin.math.max

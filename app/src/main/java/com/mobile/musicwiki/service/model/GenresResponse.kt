@@ -1,7 +1,7 @@
 package com.mobile.musicwiki.service.model
 
-data class GenresResponse(val toptags: Tags)
+data class GenresResponse(val toptags: Genres)
 
-data class Tags(val tag: ArrayList<Tag>)
+data class Genres(val tag: ArrayList<Genre>)
 
-data class Tag(val name: String, val count: Long, val reach: Long)
+data class Genre(val name: String, val count: Long, val reach: Long)

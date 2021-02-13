@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChooseGenre">
 
-        <com.mobile.musicwiki.customviews.TagView
+        <com.mobile.musicwiki.widgets.TagView
             android:id="@+id/tagView"
             style="@style/WrapContentStyle"
             android:gravity="center"

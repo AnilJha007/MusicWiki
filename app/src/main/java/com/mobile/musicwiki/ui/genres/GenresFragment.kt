@@ -4,12 +4,14 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.base.BaseFragment
-import com.mobile.musicwiki.customviews.DataTransform
-import com.mobile.musicwiki.customviews.TagView
-import com.mobile.musicwiki.service.model.Tags
+import com.mobile.musicwiki.service.model.Genres
+import com.mobile.musicwiki.utils.DataTransform
+import com.mobile.musicwiki.widgets.TagView
 import com.mobile.musicwiki.service.utility.ApiStatus
+import com.mobile.musicwiki.ui.genresdetails.GenresDetailsFragment.Companion.GENRE_NAME
 import com.mobile.musicwiki.utils.show
 import com.mobile.musicwiki.utils.snackBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_genres.*
 class GenresFragment : BaseFragment() {
 
     private lateinit var spotsDialog: AlertDialog
-    private var _tags: ArrayList<String> = arrayListOf()
+    private var _genres: ArrayList<String> = arrayListOf()
     private val genresViewModel: GenresViewModel by viewModels()
 
     override fun setPageTitle() {
@@ -43,7 +45,8 @@ class GenresFragment : BaseFragment() {
         genresViewModel.genresLiveData.observe(viewLifecycleOwner) { res ->
             when (res.status) {
                 ApiStatus.LOADING -> {
-                    if (::spotsDialog.isInitialized) {
+                    if (::spotsDialog.isInitialized && !genresViewModel.isApiLoadedOnce) {
+                        genresViewModel.isApiLoadedOnce = true
                         spotsDialog.show()
                     }
                 }
@@ -65,8 +68,9 @@ class GenresFragment : BaseFragment() {
         genresViewModel.getGenres()
     }
 
-    private fun setData(it: Tags) {
-        it.tag.forEach { _tags.add(it.name) }
+    private fun setData(it: Genres) {
+        _genres.clear()
+        it.tag.forEach { _genres.add(it.name) }
         setTags()
         tagGroup.show()
     }
@@ -79,7 +83,9 @@ class GenresFragment : BaseFragment() {
 
         (tagView as TagView<String>).setClickListener(object : TagView.TagClickListener<String> {
             override fun onTagClick(item: String) {
-
+                findNavController().navigate(R.id.genresToGenresDetails, Bundle().apply {
+                    putString(GENRE_NAME, item)
+                })
             }
         })
     }
@@ -87,7 +93,7 @@ class GenresFragment : BaseFragment() {
     private fun setTags(selected: Boolean = false) {
         with(tagView as TagView<String>) {
             clear()
-            setTags(if (selected) _tags else _tags.take(10), object : DataTransform<String> {
+            setTags(if (selected) _genres else _genres.take(10), object : DataTransform<String> {
                 override fun transfer(item: String) = item
             })
         }

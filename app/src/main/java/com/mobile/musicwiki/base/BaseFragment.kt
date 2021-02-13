@@ -27,7 +27,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     /* override this method in fragment to update page title*/
-    abstract fun setPageTitle()
+    open fun setPageTitle() {}
 
     /* override this method in fragment to attach the layout*/
     abstract fun getLayoutResourceId(): Int
