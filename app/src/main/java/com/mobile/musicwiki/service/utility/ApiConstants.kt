@@ -8,5 +8,6 @@ class ApiConstants {
         const val ALBUMS_METHOD = "tag.gettopalbums"
         const val ARTISTS_METHOD = "tag.gettopartists"
         const val TRACKS_METHOD = "tag.gettoptracks"
+        const val ALBUM_DETAILS_METHOD = "album.getinfo"
     }
 }

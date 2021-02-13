@@ -8,17 +8,20 @@ import androidx.navigation.fragment.findNavController
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.base.BaseFragment
 import com.mobile.musicwiki.service.model.Genres
-import com.mobile.musicwiki.utils.DataTransform
-import com.mobile.musicwiki.widgets.TagView
 import com.mobile.musicwiki.service.utility.ApiStatus
-import com.mobile.musicwiki.ui.genredetails.GenresDetailsFragment.Companion.GENRE_NAME
+import com.mobile.musicwiki.utils.DataTransform
 import com.mobile.musicwiki.utils.show
 import com.mobile.musicwiki.utils.snackBar
+import com.mobile.musicwiki.widgets.TagView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_genres.*
 
 @AndroidEntryPoint
 class GenresFragment : BaseFragment() {
+
+    companion object {
+        const val GENRE_NAME = "genreName"
+    }
 
     private lateinit var spotsDialog: AlertDialog
     private var _genres: ArrayList<String> = arrayListOf()

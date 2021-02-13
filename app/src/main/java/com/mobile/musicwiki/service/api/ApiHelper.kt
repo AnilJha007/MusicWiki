@@ -13,4 +13,6 @@ interface ApiHelper {
     suspend fun getArtists(genreName: String): Response<ArtistsResponse>
 
     suspend fun getTracks(genreName: String): Response<TracksResponse>
+
+    suspend fun getAlbumDetails(albumName: String, artistName: String): Response<AlbumDetailsResponse>
 }

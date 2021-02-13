@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_artists.*
 class ArtistsFragment : BaseFragment() {
 
     companion object {
-        const val TITLE = "ARTISTS"
+        const val ARTISTS = "ARTISTS"
         fun newInstance(): ArtistsFragment = ArtistsFragment()
     }
 

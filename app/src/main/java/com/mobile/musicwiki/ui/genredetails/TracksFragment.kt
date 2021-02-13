@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_tracks.*
 class TracksFragment : BaseFragment() {
 
     companion object {
-        const val TITLE = "TRACKS"
+        const val TRACKS = "TRACKS"
         fun newInstance(): TracksFragment = TracksFragment()
     }
 

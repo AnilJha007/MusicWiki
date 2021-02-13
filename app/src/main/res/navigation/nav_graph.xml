@@ -24,5 +24,25 @@
             android:name="genresName"
             app:argType="string"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/albumToAlbumDetails"
+            app:destination="@id/albumDetailsDest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumDetailsDest"
+        android:name="com.mobile.musicwiki.ui.albumdetails.AlbumDetailsFragment"
+        tools:layout="@layout/fragment_album_details">
+
+        <argument
+            android:name="artist"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="album"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>

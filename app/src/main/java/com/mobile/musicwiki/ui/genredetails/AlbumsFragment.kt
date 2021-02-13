@@ -3,10 +3,12 @@ package com.mobile.musicwiki.ui.genredetails
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mobile.musicwiki.R
 import com.mobile.musicwiki.base.BaseFragment
 import com.mobile.musicwiki.service.model.AlbumsResponse
 import com.mobile.musicwiki.service.utility.ApiStatus
+import com.mobile.musicwiki.ui.genredetails.ArtistsFragment.Companion.ARTISTS
 import com.mobile.musicwiki.utils.snackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_albums.*
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_albums.*
 class AlbumsFragment : BaseFragment() {
 
     companion object {
-        const val TITLE = "ALBUMS"
+        const val ALBUMS = "ALBUMS"
         fun newInstance(): AlbumsFragment = AlbumsFragment()
     }
 
@@ -31,7 +33,12 @@ class AlbumsFragment : BaseFragment() {
     }
 
     private fun initAdapter() {
-        itemAdapter = ItemAdapter {}
+        itemAdapter = ItemAdapter {
+            findNavController().navigate(R.id.albumToAlbumDetails, Bundle().apply {
+                putString(ALBUMS, it.title)
+                putString(ARTISTS, it.subTitle)
+            })
+        }
         rvAlbums.adapter = itemAdapter
     }
 

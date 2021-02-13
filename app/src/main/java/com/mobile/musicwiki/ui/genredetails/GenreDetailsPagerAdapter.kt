@@ -20,10 +20,10 @@ class GenreDetailsPagerAdapter(fm: FragmentManager, private val count: Int = 3) 
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
-            0 -> AlbumsFragment.TITLE
-            1 -> ArtistsFragment.TITLE
-            2 -> TracksFragment.TITLE
-            else -> AlbumsFragment.TITLE
+            0 -> AlbumsFragment.ALBUMS
+            1 -> ArtistsFragment.ARTISTS
+            2 -> TracksFragment.TRACKS
+            else -> AlbumsFragment.ALBUMS
         }
     }
 }
