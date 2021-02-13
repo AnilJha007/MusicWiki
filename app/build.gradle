@@ -81,6 +81,9 @@ dependencies {
     // spot dialog progress library
     implementation "com.github.d-max:spots-dialog:$spot_dialog_version"
 
+    // glide image library
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.ui.genresdetails
+package com.mobile.musicwiki.ui.genredetails
 
 import android.os.Bundle
 import android.view.View
@@ -7,9 +7,14 @@ import com.mobile.musicwiki.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AlbumsFragment : BaseFragment() {
+class ArtistsFragment : BaseFragment() {
 
-    override fun getLayoutResourceId() = R.layout.fragment_albums
+    companion object {
+        const val TITLE = "ARTISTS"
+        fun newInstance(): ArtistsFragment = ArtistsFragment()
+    }
+
+    override fun getLayoutResourceId() = R.layout.fragment_artists
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

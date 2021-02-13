@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/genresDetailsDest"
-        android:name="com.mobile.musicwiki.ui.genresdetails.GenresDetailsFragment"
+        android:name="com.mobile.musicwiki.ui.genredetails.GenresDetailsFragment"
         tools:layout="@layout/fragment_genres_details">
 
         <argument

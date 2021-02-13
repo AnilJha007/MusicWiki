@@ -11,7 +11,7 @@ import com.mobile.musicwiki.service.model.Genres
 import com.mobile.musicwiki.utils.DataTransform
 import com.mobile.musicwiki.widgets.TagView
 import com.mobile.musicwiki.service.utility.ApiStatus
-import com.mobile.musicwiki.ui.genresdetails.GenresDetailsFragment.Companion.GENRE_NAME
+import com.mobile.musicwiki.ui.genredetails.GenresDetailsFragment.Companion.GENRE_NAME
 import com.mobile.musicwiki.utils.show
 import com.mobile.musicwiki.utils.snackBar
 import dagger.hilt.android.AndroidEntryPoint

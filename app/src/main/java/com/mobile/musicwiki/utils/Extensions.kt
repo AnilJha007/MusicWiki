@@ -4,8 +4,11 @@ import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.mobile.musicwiki.R
 
 @Suppress("DEPRECATION")
 fun TextView.setTextAppearanceV2(context: Context, resId: Int) {
@@ -41,4 +44,12 @@ fun View.hide() {
 
 fun View.show() {
     this.visibility = View.VISIBLE
+}
+
+fun ImageView.setImage(imageUrl: String?) {
+    Glide.with(this)
+        .load(imageUrl)
+        .placeholder(R.drawable.placeholder)
+        .dontAnimate()
+        .into(this)
 }

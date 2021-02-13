@@ -16,6 +16,7 @@ buildscript {
         coroutine_version = '1.3.9'
         okhttp_version ='4.5.0'
         spot_dialog_version = "1.1@aar"
+        glide_version = "4.11.0"
     }
     repositories {
         google()

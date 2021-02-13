@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/genreDetailsParent"
     style="@style/MatchParentStyle"
-    tools:context=".ui.genresdetails.GenresDetailsFragment">
+    tools:context=".ui.genredetails.GenresDetailsFragment">
 
     <ScrollView
         style="@style/ZeroDpStyle"
@@ -32,11 +32,12 @@
         android:id="@+id/tabLayout"
         style="@style/SectionStyle"
         android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/teal_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         style="@style/ZeroDpStyle"
         app:layout_constraintBottom_toBottomOf="parent"

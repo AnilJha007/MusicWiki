@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.ui.genresdetails
+package com.mobile.musicwiki.ui.genredetails
 
 import android.content.Context
 import androidx.hilt.lifecycle.ViewModelInject

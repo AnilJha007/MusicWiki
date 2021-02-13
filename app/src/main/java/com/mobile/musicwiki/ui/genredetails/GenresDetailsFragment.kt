@@ -1,4 +1,4 @@
-package com.mobile.musicwiki.ui.genresdetails
+package com.mobile.musicwiki.ui.genredetails
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -16,8 +16,9 @@ import kotlinx.android.synthetic.main.fragment_genres_details.*
 @AndroidEntryPoint
 class GenresDetailsFragment : BaseFragment() {
 
-    private lateinit var genreName: String
+    lateinit var genreName: String
     private lateinit var spotsDialog: AlertDialog
+    private lateinit var genreDetailsPagerAdapter: GenreDetailsPagerAdapter
     private val genreDetailsViewModel: GenreDetailsViewModel by viewModels()
 
     companion object {
@@ -38,12 +39,18 @@ class GenresDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setInitStateData()
-        initListener()
         initViewModel()
     }
 
     private fun setInitStateData() {
         spotsDialog = getAlertDialog(requireContext())
+
+        genreDetailsPagerAdapter = GenreDetailsPagerAdapter(childFragmentManager)
+        with(viewPager) {
+            adapter = genreDetailsPagerAdapter
+            currentItem = 0
+        }
+        tabLayout.setupWithViewPager(viewPager)
     }
 
     private fun initViewModel() {
@@ -76,6 +83,4 @@ class GenresDetailsFragment : BaseFragment() {
     private fun setData(it: GenreDetails) {
         tvGenreDetails.setTextOrHide(it.wiki.summary, true)
     }
-
-    private fun initListener() {}
 }
